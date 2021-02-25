@@ -114,15 +114,7 @@ fatal(int value, char *fmt, ...)
     vfprintf(stderr, fmt, ap);
     va_end(ap);
 
-#ifdef __linux__
-    if (value > 0 && value < sys_nerr) {
-	fprintf(stderr, "  (%s)\n", sys_errlist[value]);
-    } else {
-	fprintf(stderr, "\n");
-    }
-#else
     fprintf(stderr, "\n");
-#endif
 
     exit(value);
 }
@@ -143,13 +135,5 @@ error(int value, char *fmt, ...)
     vfprintf(stderr, fmt, ap);
     va_end(ap);
 
-#ifdef __linux__
-    if (value > 0 && value < sys_nerr) {
-	fprintf(stderr, "  (%s)\n", sys_errlist[value]);
-    } else {
-	fprintf(stderr, "\n");
-    }
-#else
     fprintf(stderr, "\n");
-#endif
 }

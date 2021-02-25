@@ -147,7 +147,7 @@ get_okay(char *prompt, int default_value)
     int		c;
 
     flush_to_newline(0);
-    printf(prompt);
+    printf("%s", prompt);
 
     for (;;) {
 	c = getch();
@@ -165,7 +165,7 @@ get_okay(char *prompt, int default_value)
 	    return 0;
 	} else {
 	    flush_to_newline(0);
-	    printf(prompt);
+	    printf("%s", prompt);
 	}
     }
     return -1;
@@ -178,7 +178,7 @@ get_command(char *prompt, int promptBeforeGet, int *command)
     int		c;
 
     if (promptBeforeGet) {
-	printf(prompt);
+	printf("%s", prompt);
     }	
     for (;;) {
 	c = getch();
@@ -188,7 +188,7 @@ get_command(char *prompt, int promptBeforeGet, int *command)
 	} else if (c == ' ' || c == '\t') {
 	    // skip blanks and tabs
 	} else if (c == '\n') {
-	    printf(prompt);
+	    printf("%s", prompt);
 	} else {
 	    *command = c;
 	    return 1;
@@ -213,7 +213,7 @@ get_number_argument(char *prompt, long *number, long default_value)
 	    // skip blanks and tabs
 	} else if (c == '\n') {
 	    if (default_value < 0) {
-		printf(prompt);
+		printf("%s", prompt);
 	    } else {
 		ungetch(c);
 		*number = default_value;
@@ -291,7 +291,7 @@ get_string_argument(char *prompt, char **string, int reprompt)
 	    // skip blanks and tabs
 	} else if (c == '\n') {
 	    if (reprompt) {
-		printf(prompt);
+		printf("%s", prompt);
 	    } else {
 		ungetch(c);
 		*string = NULL;
